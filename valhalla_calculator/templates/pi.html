@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}PI Calculations{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    VALUE: {{ value }}
+    <form method="post">
+        <div class="row">
+            <div class="col">
+                Quantity
+            </div>
+            <div class="col">
+                Resource
+            </div>
+        </div>
+        {% for i in range(0,10) %}
+            <div class="row">
+                <div class="col">
+                    <input class="form-control" name="quantity{{ i }}" placeholder="Quantity">
+                </div>
+                <div class="col">
+                    <select class="form-control" name="resource{{ i }}">
+                    {% for resource in resources.keys() %}
+                        <option value="{{ resource }}"> {{ resource }}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}

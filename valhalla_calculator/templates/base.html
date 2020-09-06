@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{% block title %}{% endblock %} - Valhalla Calculators</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+ <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<body>
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <div class="container">
+          <a class="navbar-brand" href="/">
+              <img src="{{ url_for('static', filename='img/disney-mpp-logo.png') }}" />
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div id="navbar" class="collapse navbar-collapse justify-content-md-center">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown-acl" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACL</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown-acl">
+                  <a class="dropdown-item" href="/acl/create">Create</a>
+                  <a class="dropdown-item" href="/acl/view">View</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown-acl" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Service</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown-acl">
+                  <a class="dropdown-item" href="/service/create">Create</a>
+                  <a class="dropdown-item" href="/service/view">View</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown-acl" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Network</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown-acl">
+                  <a class="dropdown-item" href="/network/create">Create</a>
+                  <a class="dropdown-item" href="/network/view">View</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown-acl" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Device</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown-acl">
+                  <a class="dropdown-item" href="/device/create">Create</a>
+                  <a class="dropdown-item" href="/device/view">View</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+      </div>
+    </nav>
+    <div class="container wrapper">
+      <div id="header">
+        {% block header %}{% endblock %}
+      </div>
+      <div id="content">
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+        <footer class="footer">
+        <div class="container">
+            <div class="form-row">
+            </div>
+        </div>
+    </footer>
+ 
+  
+</body>
+</html>              {% if config['ENVIRONMENT'] == "development" %}
+              <li class="nav-item">
+                <a href="/docs/">Documentation</a>
+              </li>
+              {% endif %}
