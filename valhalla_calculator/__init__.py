@@ -32,6 +32,11 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+    @app.template_filter()
+    def numberFormat(value):
+        """Add commas to a number"""
+        return format(int(value), ',d')
+
     @app.route('/')
     def index():
         """Basic index page with the menus for convenience"""
@@ -39,6 +44,12 @@ def create_app(test_config=None):
 
     from valhalla_calculator.controllers import pi
     app.register_blueprint(pi.bp)
+
+    from valhalla_calculator.controllers import ore
+    app.register_blueprint(ore.bp)
+
+    from valhalla_calculator.controllers import data_entry
+    app.register_blueprint(data_entry.bp)
 
     return app
 

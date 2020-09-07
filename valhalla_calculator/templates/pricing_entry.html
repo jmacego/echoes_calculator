@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Data Entry{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    <textarea class="form-control" name="pricing_data" placeholder="Copy and paste the pricing cells from the main spreadsheet"></textarea>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<div class="row">
+    {{ pricing_data[0][0] }}
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>{% for heading in pricing_data[1][:5] %} <th>{{ heading }}</th>{% endfor %}</tr>
+        </thead>
+        <tbody class="table-striped">
+        {% for line in pricing_data[2:] %}
+            <tr>
+                {% for entry in line[:5] %}
+                <td>{{ entry }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
