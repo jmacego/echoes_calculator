@@ -5,7 +5,8 @@
 {% endblock %}
 
 {% block content %}
-    Enter the quantity and select the type of PI material. Submit and the VALUE below will be current corp buyback pricing.<br>
+    Enter the quantity and select the type of ORE. Submit and the VALUE below will be current corp buyback pricing.<br>
+    Remember that you don't actually want to sell in quantities less than 30k. The prices are bad to discourage this.<br>
     <br>{{ last_updated }}
     {% if value and value != "" %}<h3>VALUE: {{ value | numberFormat }} isk</h3>{% endif %}
     <form method="post">
