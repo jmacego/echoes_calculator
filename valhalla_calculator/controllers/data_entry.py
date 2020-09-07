@@ -2,6 +2,7 @@
 PI Calculators
 """
 import json
+import os
 from flask import (
     Blueprint, render_template, request, send_file, current_app, redirect, url_for
 )
@@ -13,9 +14,11 @@ bp = Blueprint('data_entry', __name__, url_prefix='/data_entry')
 def create_network():
     """Do PI stuff"""
     if request.method == 'GET':
-        with open("instance/pricing_data.json") as f:
-            pricing_data = json.load(f)
-        print(pricing_data)
+        if os.path.exists("instance/pricing_data.json"):
+            with open("instance/pricing_data.json") as f:
+                pricing_data = json.load(f)
+        else:
+            pricing_data = None
         return render_template('pricing_entry.html', pricing_data=pricing_data)
     elif request.method == 'POST':
         pricing_data = [x.strip().split("\t") for x in request.form['pricing_data'].split("\n") if x.strip()]

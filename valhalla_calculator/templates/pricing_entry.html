@@ -9,6 +9,7 @@
     <textarea class="form-control" name="pricing_data" placeholder="Copy and paste the pricing cells from the main spreadsheet"></textarea>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+{% if pricing_data and pricing_data != "" and pricing_data|length > 0 %}
 <div class="row">
     {{ pricing_data[0][0] }}
     <table class="table">
@@ -26,5 +27,6 @@
         </tbody>
     </table>
 </div>
+{% endif %}
 
 {% endblock %}
