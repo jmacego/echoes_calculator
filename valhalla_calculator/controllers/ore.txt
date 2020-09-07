@@ -1,0 +1,31 @@
+ORE TYPE	30k+	20-29k	15k-19.9k	10k-14.9k	0-9.9k
+Veldspar	3	2.4	2.1	1.8	1.5
+Plagioclase	15	12	10.5	9	7.5
+Scordite	3	2.4	2.1	1.8	1.5
+Omber	25	20	17.5	15	12.5
+Pyroxeres	210	168	147	126	105
+Kernite	75	60	52.5	45	37.5
+Dark Ochre	135	108	94.5	81	67.5
+Gneiss	280	224	196	168	140
+Spodumain	500	400	350	300	250
+Hemorphite	280	224	196	168	140
+Hedbergite	470	376	329	282	235
+Jaspet	650	520	455	390	325
+Crokite	950	760	665	570	475
+Bistot	360	288	252	216	180
+Arkonor	180	144	126	108	90
+Mercoxet	0	0	0	0	0
+Base Metals	65				
+Motley Compound	70				
+Fiber Composite	60				
+Sheen Compound	80				
+Lustering Alloy	80				
+Gleaming Alloy	80				
+Condensed Alloy	60				
+Precious Alloy	100				
+Opulent Compound	120				
+Glossy Compound	60				
+Heavy Metals	130				
+Noble Metals	80				
+Reactive Metals	200				
+Toxic Metals	160				
