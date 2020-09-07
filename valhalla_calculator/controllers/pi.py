@@ -1,8 +1,6 @@
 """
 PI Calculators
 """
-from io import BytesIO
-from slugify import slugify
 from flask import (
     Blueprint, render_template, request, send_file, current_app, redirect, url_for
 )
