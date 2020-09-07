@@ -1,6 +1,7 @@
 """
 PI Calculators
 """
+import json
 from flask import (
     Blueprint, render_template, request, send_file, current_app, redirect, url_for
 )
@@ -8,40 +9,34 @@ import configuration  # configuration variables, including secrets
 
 bp = Blueprint('ore', __name__, url_prefix='/ore')
 
-SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-
-# here enter the id of your google sheet
-SAMPLE_SPREADSHEET_ID_input = '1jkDdO4iLH_nzCxW0BC0ERALf3dHtOd1eUZrEBc3_pCo'
-SAMPLE_RANGE_NAME = 'A1:AA1000'
-"""
-def main():
-    global values_input, service
-    creds = None
-    if os.path.exists('token.pickle'):
-        with open('token.pickle', 'rb') as token:
-            creds = pickle.load(token)
-    if not creds or not creds.valid:
-        if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            flow = InstalledAppFlow.from_client_secrets_file(
-                'my_json_file.json', SCOPES) # here enter the name of your downloaded JSON file
-            creds = flow.run_local_server(port=0)
-        with open('token.pickle', 'wb') as token:
-            pickle.dump(creds, token)
-
-    service = build('sheets', 'v4', credentials=creds)
-
-    # Call the Sheets API
-    sheet = service.spreadsheets()
-    result_input = sheet.values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID_input,
-                                range=SAMPLE_RANGE_NAME).execute()
-    values_input = result_input.get('values', [])
-
-    if not values_input and not values_expansion:
-        print('No data found.')
-
-main()
-
-df=pd.DataFrame(values_input[1:], columns=values_input[0])
-"""
+@bp.route('/', methods=('GET', 'POST'))
+def calculat_ore():
+    """calculate ore"""
+    with open("instance/pricing_data.json") as f:
+            pricing_data = json.load(f)
+    resources = {}
+    for row in pricing_data[2:19]:
+        resources[row[0]] = row[1:7]
+    last_updated = pricing_data[0][0]
+    if request.method == 'GET':
+        return render_template('ore.html', resources=resources, last_updated=last_updated)
+    elif request.method == 'POST':
+        data = {}
+        value = 0
+        for response in request.form.to_dict().keys():
+            if "resource" in response:
+                id = response.replace("resource", "")
+                if request.form['quantity'+id] != "":
+                    if float(request.form['quantity'+id]) >= 30000:
+                        value += float(resources[request.form['resource'+id]][0]) * float(request.form['quantity'+id])
+                    elif 30000 > float(request.form['quantity'+id]) >= 20000:
+                        value += float(resources[request.form['resource'+id]][1]) * float(request.form['quantity'+id])
+                    elif 20000 > float(request.form['quantity'+id]) >= 15000:
+                        value += float(resources[request.form['resource'+id]][2]) * float(request.form['quantity'+id])
+                    elif 15000 > float(request.form['quantity'+id]) >= 10000:
+                        value += float(resources[request.form['resource'+id]][3]) * float(request.form['quantity'+id])
+                    elif 10000 > float(request.form['quantity'+id]) >= 0:
+                        value += float(resources[request.form['resource'+id]][4]) * float(request.form['quantity'+id])
+        return render_template('ore.html', value=value, resources=resources, last_updated=last_updated)
+    else:
+        return "Method not supported"
