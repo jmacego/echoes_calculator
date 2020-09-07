@@ -18,8 +18,9 @@ def create_network():
     resources = {}
     for row in pricing_data[19:-1]:
         resources[row[0]] = int(row[1])
+    last_updated = pricing_data[0][0]
     if request.method == 'GET':
-        return render_template('pi.html', resources=resources)
+        return render_template('pi.html', resources=resources, last_updated=last_updated)
     elif request.method == 'POST':
         data = {}
         value = 0
@@ -31,6 +32,6 @@ def create_network():
                 print(request.form['resource'+id])
                 if request.form['quantity'+id] != "":
                     value += resources[request.form['resource'+id]] * int(request.form['quantity'+id])
-        return render_template('pi.html', value=value, resources=resources)
+        return render_template('pi.html', value=value, resources=resources, last_updated=last_updated)
     else:
         return "Method not supported"

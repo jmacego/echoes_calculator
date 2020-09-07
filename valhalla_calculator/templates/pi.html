@@ -6,6 +6,7 @@
 
 {% block content %}
     Enter the quantity and select the type of PI material. Submit and the VALUE below will be current corp buyback pricing.<br>
+    <br>{{ last_updated }}
     {% if value and value != "" %}<h3>VALUE: {{ value | numberFormat }} isk</h3>{% endif %}
     <form method="post">
         <div class="row">
