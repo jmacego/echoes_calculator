@@ -25,11 +25,8 @@ def create_network():
         data = {}
         value = 0
         for response in request.form.to_dict().keys():
-            print(response)
             if "resource" in response:
                 id = response.replace("resource", "")
-                print(request.form['quantity'+id])
-                print(request.form['resource'+id])
                 if request.form['quantity'+id] != "":
                     value += resources[request.form['resource'+id]] * int(request.form['quantity'+id])
         return render_template('pi.html', value=value, resources=resources, last_updated=last_updated)
